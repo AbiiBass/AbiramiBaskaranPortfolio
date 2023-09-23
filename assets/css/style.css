@@ -579,7 +579,10 @@ section {
   opacity: 0;
   /* display: flex; */
 }
-
+.portfolio #Dell_Innovate_Fest::before{
+  background-image: url('../img/portfolio/Dell_Minds_Description.PNG');
+  transition: all ease-in-out 1s;
+}
 .portfolio #aeroplane_proj::before{
   background-image: url('../img/portfolio/AeroplaneDescription.PNG');
   transition: all ease-in-out 1s;
