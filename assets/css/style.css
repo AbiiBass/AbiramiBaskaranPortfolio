@@ -613,6 +613,21 @@ section {
   transition: all ease-in-out 1s;
 }
 
+.portfolio #DigitalTwin_proj::before{
+  background-image: url('../img/portfolio/DigitalTwin_Description.PNG');
+  transition: all ease-in-out 1s;
+}
+
+.portfolio #OOP::before{
+  background-image: url('../img/portfolio/OOP_description.PNG');
+  transition: all ease-in-out 1s;
+}
+
+.portfolio #IOTP::before{
+  background-image: url('../img/portfolio/IOTP_description.PNG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio .portfolio-wrap .portfolio-links {
   opacity: 1;
   left: 0;
