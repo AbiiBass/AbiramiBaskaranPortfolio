@@ -579,6 +579,12 @@ section {
   opacity: 0;
   /* display: flex; */
 }
+
+.portfolio #NTU_DeepLearningWeek::before{
+  background-image: url('../img/portfolio/NTU_description.PNG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio #Dell_Innovate_Fest::before{
   background-image: url('../img/portfolio/Dell_Minds_Description.PNG');
   transition: all ease-in-out 1s;
