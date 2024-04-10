@@ -203,10 +203,10 @@
    * Portfolio details slider
    */
   new Swiper('.portfolio-details-slider', {
-    speed: 400,
+    speed: 400, // 400
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 5000, //5000
       disableOnInteraction: false
     },
     pagination: {
@@ -220,10 +220,10 @@
    * Testimonials slider
    */
   new Swiper('.testimonials-slider', {
-    speed: 600,
+    speed: 600, // 600
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 3000, // 600
       disableOnInteraction: false
     },
     slidesPerView: 'auto',
