@@ -584,6 +584,11 @@ section {
   transition: all ease-in-out 1s;
 }
 
+.portfolio #PresentationBoost::before{
+  background-image: url('../img/portfolio/PresentationBoost_Description.JPG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio #Dell_Innovate_Fest::before{
   background-image: url('../img/portfolio/Dell_Minds_Description.PNG');
   transition: all ease-in-out 1s;
@@ -630,6 +635,11 @@ section {
 
 .portfolio #IOTP::before{
   background-image: url('../img/portfolio/IOTP_description.PNG');
+  transition: all ease-in-out 1s;
+}
+
+.portfolio #UpdateSoon::before{
+  background-image: url('../img/portfolio/Update_2.JPG');
   transition: all ease-in-out 1s;
 }
 
