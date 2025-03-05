@@ -579,6 +579,11 @@ section {
   /* display: flex; */
 }
 
+.portfolio #NUS_HackRoll::before{
+  background-image: url('../img/portfolio/Mickey_description.JPG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio #NTU_DeepLearningWeek::before{
   background-image: url('../img/portfolio/NTU_description.PNG');
   transition: all ease-in-out 1s;
