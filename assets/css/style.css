@@ -228,7 +228,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/AbiWorking/AllPics.gif") top center;
   background-size: cover;
 }
 
@@ -594,6 +594,11 @@ section {
   transition: all ease-in-out 1s;
 }
 
+.portfolio #ResumeGenie::before{
+  background-image: url('../img/portfolio/ResumeGenieDescription.PNG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio #Dell_Innovate_Fest::before{
   background-image: url('../img/portfolio/Dell_Minds_Description.PNG');
   transition: all ease-in-out 1s;
@@ -905,6 +910,7 @@ section {
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #149ddd;
 }
+
 
 
 
