@@ -648,6 +648,11 @@ section {
   transition: all ease-in-out 1s;
 }
 
+.portfolio #EE2026::before{
+  background-image: url('../img/portfolio/verilogProj_Description.PNG');
+  transition: all ease-in-out 1s;
+}
+
 .portfolio #UpdateSoon::before{
   background-image: url('../img/portfolio/Update_2.JPG');
   transition: all ease-in-out 1s;
