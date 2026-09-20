@@ -649,8 +649,8 @@ section {
 }
 
 .portfolio #EE2026::before{
-  background-image: url('../img/portfolio/verilogProj_Description.PNG');
-  transition: all ease-in-out 1s;
+  background-image: url('../img/portfolio/verilogProj_Description.png');
+  transition: all ease-in-out 1s
 }
 
 .portfolio #UpdateSoon::before{
