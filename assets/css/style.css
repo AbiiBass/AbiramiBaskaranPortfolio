@@ -653,6 +653,16 @@ section {
   transition: all ease-in-out 1s
 }
 
+.portfolio #tiktok::before{
+  background-image: url('../img/portfolio/pip_Description.png');
+  transition: all ease-in-out 1s
+}
+
+.portfolio #hacknation::before{
+  background-image: url('../img/portfolio/HacknationComp_Description.png');
+  transition: all ease-in-out 1s
+}
+
 .portfolio #UpdateSoon::before{
   background-image: url('../img/portfolio/Update_2.JPG');
   transition: all ease-in-out 1s;

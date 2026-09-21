@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artificially Unintelligent — an AI-assisted women's hormonal health platform combining ensemble modelling, shared health records, and human-in-the-loop clinical support.">
+    <title>Artificially Unintelligent | Women's Hormonal Health AI</title>
+
+    <style>
+        :root {
+            --bg: #070a12;
+            --bg-soft: #0c1120;
+            --card: rgba(17, 24, 39, 0.72);
+            --card-solid: #111827;
+            --text: #f7f8fc;
+            --muted: #aeb8cb;
+            --line: rgba(255, 255, 255, 0.10);
+            --purple: #9b87f5;
+            --pink: #f472b6;
+            --cyan: #67e8f9;
+            --green: #86efac;
+            --max: 1160px;
+            --radius: 24px;
+            --shadow: 0 22px 70px rgba(0, 0, 0, 0.30);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 0%, rgba(155, 135, 245, 0.17), transparent 30rem),
+                radial-gradient(circle at 88% 16%, rgba(244, 114, 182, 0.12), transparent 28rem),
+                var(--bg);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        img,
+        iframe {
+            max-width: 100%;
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        span,
+        a {
+            overflow-wrap: break-word;
+        }
+
+        .container {
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--line);
+            background: rgba(7, 10, 18, 0.78);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 11px;
+            background: linear-gradient(135deg, rgba(155, 135, 245, 0.25), rgba(244, 114, 182, 0.18));
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .hero {
+            min-height: 86vh;
+            display: grid;
+            align-items: center;
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -260px;
+            top: 40px;
+            border: 1px solid rgba(103, 232, 249, 0.08);
+            border-radius: 50%;
+            box-shadow: 0 0 0 70px rgba(155, 135, 245, 0.025), 0 0 0 140px rgba(244, 114, 182, 0.018);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(155, 135, 245, 0.28);
+            border-radius: 999px;
+            background: rgba(155, 135, 245, 0.08);
+            color: #d9d1ff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 14px var(--pink);
+        }
+
+        h1 {
+            max-width: 930px;
+            font-size: clamp(3.2rem, 8vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: -0.065em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff 0%, #cfc5ff 45%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-copy {
+            max-width: 780px;
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-weight: 700;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-primary {
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            color: #0a0710;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1px;
+            max-width: 760px;
+            margin-top: 62px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--line);
+        }
+
+        .stat {
+            padding: 19px 22px;
+            background: rgba(10, 14, 25, 0.86);
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 2px;
+            font-size: 1.1rem;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 42px;
+        }
+
+        .section-kicker {
+            margin-bottom: 10px;
+            color: var(--pink);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.045em;
+        }
+
+        .section-heading p {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .problem-grid,
+        .feature-grid,
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+            box-shadow: var(--shadow);
+        }
+
+        .problem-card,
+        .feature-card,
+        .dataset-card {
+            padding: 28px;
+        }
+
+        .number {
+            display: inline-grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: rgba(155, 135, 245, 0.12);
+            color: #d9d1ff;
+            font-weight: 800;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.18rem;
+        }
+
+        .card p,
+        .card li {
+            color: var(--muted);
+        }
+
+        .architecture {
+            padding: 36px;
+        }
+
+        .architecture-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: stretch;
+            gap: 14px;
+        }
+
+        .flow-box {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .flow-box small {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--cyan);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .flow-box ul {
+            padding-left: 18px;
+            margin-top: 10px;
+        }
+
+        .flow-arrow {
+            display: grid;
+            place-items: center;
+            color: var(--purple);
+            font-size: 1.6rem;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .model-box {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(10, 14, 25, 0.72);
+        }
+
+        .model-box span {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--pink);
+            font-size: 0.76rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .media-layout {
+            width: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+        }
+
+        .slideshow {
+            position: relative;
+            overflow: hidden;
+            height: clamp(500px, 58vw, 720px);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #0b0f1b;
+            box-shadow: var(--shadow);
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) auto;
+            opacity: 0;
+            transform: scale(1.01);
+            transition: opacity 500ms ease, transform 650ms ease;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            display: block;
+            object-fit: contain;
+            object-position: center;
+            background: #070a12;
+        }
+
+        .slide-caption {
+            position: static;
+            z-index: 5;
+            width: 100%;
+            max-width: none;
+            min-height: 126px;
+            padding: 22px 96px 24px;
+            border-top: 1px solid var(--line);
+            background: #bfeee8;
+            box-shadow: none;
+        }
+
+        .slide-caption strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #101817;
+            font-size: 1.15rem;
+        }
+
+        .slide-caption span {
+            color: #263b38;
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .slide-placeholder {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 30px;
+            text-align: center;
+            background:
+                linear-gradient(135deg, rgba(155, 135, 245, 0.10), rgba(244, 114, 182, 0.06)),
+                repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(255, 255, 255, 0.018) 18px, rgba(255, 255, 255, 0.018) 19px);
+            color: var(--muted);
+        }
+
+        .slide-placeholder strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .slide-controls {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 122px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .slide-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            background: rgba(7, 10, 18, 0.68);
+            color: var(--text);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .dots {
+            display: flex;
+            gap: 7px;
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            background: rgba(7, 10, 18, 0.58);
+            backdrop-filter: blur(10px);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.32);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--pink);
+        }
+
+        .media-note {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+        }
+
+        .media-note p {
+            color: var(--muted);
+        }
+
+        .media-note code {
+            display: block;
+            margin-top: 18px;
+            padding: 14px;
+            overflow-x: auto;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            color: #d9d1ff;
+            font-size: 0.82rem;
+        }
+
+        .video-frame {
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #0b0f1b;
+            box-shadow: var(--shadow);
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .feature-card {
+            min-height: 230px;
+        }
+
+        .feature-icon {
+            margin-bottom: 22px;
+            font-size: 1.55rem;
+        }
+
+        .dataset-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .dataset-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0;
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: #d8dfec;
+            background: rgba(255, 255, 255, 0.035);
+            font-size: 0.78rem;
+        }
+
+        .dataset-card ul {
+            padding-left: 18px;
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stack span {
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.035);
+            color: #d8dfec;
+            font-weight: 650;
+        }
+
+        .disclaimer {
+            margin-top: 34px;
+            padding: 18px 20px;
+            border-left: 3px solid var(--pink);
+            border-radius: 0 14px 14px 0;
+            background: rgba(244, 114, 182, 0.06);
+            color: var(--muted);
+        }
+
+        .cta {
+            padding-bottom: 120px;
+        }
+
+        .cta-card {
+            padding: clamp(34px, 7vw, 72px);
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(155, 135, 245, 0.20), transparent 24rem),
+                rgba(255, 255, 255, 0.025);
+        }
+
+        .cta-card p {
+            max-width: 700px;
+            margin: 16px auto 28px;
+            color: var(--muted);
+        }
+
+        footer {
+            padding: 28px 0 42px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 650ms ease, transform 650ms ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .slideshow {
+                height: clamp(460px, 72vw, 620px);
+            }
+
+            .slide-caption {
+                padding: 20px 72px 22px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .problem-grid,
+            .model-grid,
+            .feature-grid,
+            .dataset-grid,
+
+
+            .architecture-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                min-height: 30px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(calc(100% - 28px), var(--max));
+            }
+
+            .nav-inner {
+                min-height: 60px;
+            }
+
+            .brand {
+                font-size: 0.92rem;
+            }
+
+            .brand-mark {
+                width: 30px;
+                height: 30px;
+                flex: 0 0 auto;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 76px 0 56px;
+            }
+
+            h1 {
+                font-size: clamp(3rem, 16vw, 5rem);
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture {
+                padding: 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    
+        @media (max-width: 640px) {
+            .slideshow {
+                height: clamp(430px, 120vw, 560px);
+                border-radius: 18px;
+            }
+
+            .slide-caption {
+                min-height: 150px;
+                padding: 18px 20px 22px;
+            }
+
+            .slide-caption strong {
+                font-size: 1.05rem;
+            }
+
+            .slide-caption span {
+                font-size: 0.95rem;
+                line-height: 1.55;
+            }
+
+            .slide-controls {
+                left: 10px;
+                right: 10px;
+                bottom: 154px;
+                gap: 8px;
+            }
+
+            .slide-btn {
+                width: 38px;
+                height: 38px;
+                flex: 0 0 auto;
+            }
+
+            .dots {
+                max-width: calc(100% - 92px);
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .dots::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 420px) {
+            h1 {
+                font-size: clamp(2.6rem, 15vw, 4rem);
+            }
+
+            .hero-copy {
+                font-size: 1rem;
+            }
+
+            .slideshow {
+                height: 460px;
+            }
+
+            .slide-caption {
+                min-height: 164px;
+                padding: 16px 18px 20px;
+            }
+
+            .slide-controls {
+                bottom: 168px;
+            }
+        }
+</style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a class="brand" href="#top" aria-label="Artificially Unintelligent home">
+                <span class="brand-mark">AI</span>
+                <span>Artificially Unintelligent</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#system">System</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#demo">Demo</a>
+                <a href="#data">Data</a>
+                <a href="https://github.com/AbiiBass/HackNation_Aritificially_Unintelligent" target="_blank" rel="noreferrer">GitHub ↗</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="top">
+        <header class="hero">
+            <div class="container">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    HackNation · Women's Hormonal Health
+                </div>
+
+                <h1>
+                    <span class="gradient-text">Team Artificially Unintelligent</span>
+                </h1>
+
+                <p class="hero-copy">
+                    For a submission to the 6th Hack-Nation Global AI Hackathon, we built this application.
+                    A clinical-support prototype for women's hormonal health that combines multiple specialised
+                    models instead of trusting a single predictor — then connects the result to a shared patient
+                    record workflow, role-based access, and a safety-aware health chatbot.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#demo">Watch the demo ↓</a>
+                    <a class="btn" href="https://github.com/AbiiBass/HackNation_Aritificially_Unintelligent" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>3 model perspectives</strong>
+                        <span>Generic thyroid · women-only PCOS · clinical rules</span>
+                    </div>
+                    <div class="stat">
+                        <strong>2 conditions</strong>
+                        <span>PCOS + thyroid dysfunction</span>
+                    </div>
+                    <div class="stat">
+                        <strong>2 user roles</strong>
+                        <span>Patient + clinician workflows</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">The idea</div>
+                    <h2>Don't throw away imperfect models. Make their limitations useful.</h2>
+                    <p>
+                        The project challenges the idea that one dataset or one model should carry the full decision.
+                        Instead, different sources of evidence contribute to a combined output, while the application
+                        keeps the final interpretation in the hands of a clinician.
+                    </p>
+                </div>
+
+                <div class="problem-grid">
+                    <article class="card problem-card reveal">
+                        <span class="number">01</span>
+                        <h3>Dataset bias</h3>
+                        <p>Generic clinical models may inherit mixed-sex or male-skewed training distributions that do not represent women's hormonal health equally well.</p>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="number">02</span>
+                        <h3>Narrow specialisation</h3>
+                        <p>Women-only models can be more targeted, but a narrow cohort may not capture every relevant signal or comorbidity on its own.</p>
+                    </article>
+
+                    <article class="card problem-card reveal">
+                        <span class="number">03</span>
+                        <h3>Fragmented records</h3>
+                        <p>Patient history is often distributed across separate providers. The prototype explores a shared record layer with controlled patient and doctor permissions.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="system">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">System architecture</div>
+                    <h2>Multiple signals in. One clinically focused result out.</h2>
+                    <p>
+                        Uploaded lab and screening information is transformed into structured features and evaluated
+                        through complementary model paths. Their outputs are combined into a final result rather than
+                        treating any individual model as absolute ground truth.
+                    </p>
+                </div>
+
+                <div class="card architecture reveal">
+                    <div class="architecture-flow">
+                        <div class="flow-box">
+                            <small>Input</small>
+                            <h3>Patient workup</h3>
+                            <ul>
+                                <li>Lab and screening PDF</li>
+                                <li>Hormonal / thyroid values</li>
+                                <li>Clinical and ultrasound features</li>
+                            </ul>
+                        </div>
+
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-box">
+                            <small>Inference</small>
+                            <h3>Complementary models</h3>
+                            <ul>
+                                <li>Mixed-sex thyroid model</li>
+                                <li>Women-only PCOS model</li>
+                                <li>Transparent clinical-rule engine</li>
+                            </ul>
+                        </div>
+
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-box">
+                            <small>Output</small>
+                            <h3>Decision support</h3>
+                            <ul>
+                                <li>Condition-oriented confidence</li>
+                                <li>Reasoning / supporting signals</li>
+                                <li>Explicit missing-data handling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="model-grid">
+                        <div class="model-box">
+                            <span>Model A</span>
+                            <h3>Thyroid cohort</h3>
+                            <p>Uses mixed-sex thyroid data containing TSH, T3, T4, T4U, FTI and patient context.</p>
+                        </div>
+
+                        <div class="model-box">
+                            <span>Model B</span>
+                            <h3>PCOS cohort</h3>
+                            <p>Uses women-only hormonal, menstrual, symptom and ultrasound/follicle information.</p>
+                        </div>
+
+                        <div class="model-box">
+                            <span>Model C</span>
+                            <h3>Clinical criteria</h3>
+                            <p>Encodes interpretable diagnostic rules so the pipeline is not dependent only on learned statistical patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">Interface gallery</div>
+                    <h2>The application, from patient records to study analysis.</h2>
+                    <p>
+                        A walkthrough of the patient and clinical workflows, from secure access and health records to
+                        AI-assisted analysis and human escalation. Use the arrows or dots to explore the interface.
+                    </p>
+                </div>
+
+                <div class="media-layout">
+                    <div class="slideshow reveal" id="projectSlideshow" aria-label="Project screenshots">
+                        <!-- ============================================================
+                             EDIT SCREENSHOT IMAGES HERE
+
+                             All gallery images are stored in the SAME directory as this HTML file.
+                             To change an image, edit the src filename below.
+                             To change its description, edit the text inside .slide-caption.
+                             ============================================================ -->
+
+                        <div class="slide active">
+                            <img src="login_page.png" alt="Application login page for patient and staff access">
+                            <div class="slide-caption">
+                                <strong>Unified Login</strong>
+                                <span>A shared authentication entry point that routes users into patient or clinical-staff workflows.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="patients_homepage.png" alt="Patient homepage with health records and AI chatbot access">
+                            <div class="slide-caption">
+                                <strong>Patient Dashboard</strong>
+                                <span>A patient-facing hub for longitudinal health records, AI-assisted guidance and clinical communication.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="staff_homepage.png" alt="Staff homepage with patient records, study analysis and patient help requests">
+                            <div class="slide-caption">
+                                <strong>Clinical Staff Dashboard</strong>
+                                <span>Centralizes patient records, AI-assisted study analysis and pending patient support requests.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="patient_records.png" alt="Patient view of personal medical records">
+                            <div class="slide-caption">
+                                <strong>Patient Health Records</strong>
+                                <span>Provides read-only access to medical history across participating care providers in one interface.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="chatbot.png" alt="Patient AI health chatbot interface">
+                            <div class="slide-caption">
+                                <strong>AI Health Assistant</strong>
+                                <span>Answers general health questions while maintaining clear boundaries around diagnosis and clinical advice.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="emergency_scenario.png" alt="AI chatbot detecting a potentially serious health scenario">
+                            <div class="slide-caption">
+                                <strong>Safety Escalation</strong>
+                                <span>Detects potentially serious health concerns and redirects the patient toward appropriate human or emergency support.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="Q_withdoc.png" alt="Patient interface for asking a doctor a question">
+                            <div class="slide-caption">
+                                <strong>Ask a Doctor</strong>
+                                <span>Escalates patient questions to clinical staff when AI guidance is insufficient or human review is preferred.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="staff_patient_records.png" alt="Staff interface for searching and reviewing patient records">
+                            <div class="slide-caption">
+                                <strong>Clinical Record Search</strong>
+                                <span>Allows authorized staff to retrieve patient histories and review records through a unified clinical interface.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="study_analysis.png" alt="Staff AI-assisted health study analysis interface">
+                            <div class="slide-caption">
+                                <strong>AI Study Analysis</strong>
+                                <span>Processes uploaded health results through the ensemble pipeline to support evidence-grounded clinical review.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="A_withpation.png" alt="Staff interface for viewing and answering patient questions">
+                            <div class="slide-caption">
+                                <strong>Patient Help Queue</strong>
+                                <span>Surfaces unanswered patient questions so clinical staff can review context and respond directly.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="grp_discussion.png" alt="Team brainstorming and project development discussion">
+                            <div class="slide-caption">
+                                <strong>Behind the Build</strong>
+                                <span>From architecture sketches to rapid iteration: collaborative brainstorming behind the system design and prototype.</span>
+                            </div>
+                        </div>
+
+                        <div class="slide-controls">
+                            <button class="slide-btn" id="prevSlide" aria-label="Previous screenshot">←</button>
+                            <div class="dots" id="slideDots" aria-label="Choose screenshot"></div>
+                            <button class="slide-btn" id="nextSlide" aria-label="Next screenshot">→</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section id="demo">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">Demo video</div>
+                    <h2>See the submission video</h2>
+                    <p>
+                        This video includes introduction of the team and a demo of the application showcasing patient record access, chatbot escalation, clinician upload permissions,
+                        the doctor help queue, and the study-analysis pipeline.
+                    </p>
+                </div>
+
+                <!-- ============================================================
+                     EDIT YOUTUBE VIDEO HERE
+
+                     Replace YOUR_VIDEO_ID in the iframe src below.
+
+                     Example YouTube URL:
+                     https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+                     Becomes:
+                     https://www.youtube.com/embed/dQw4w9WgXcQ
+                     https://youtu.be/e_cBM8PgxTk
+                     ============================================================ -->
+
+                <div class="video-frame reveal">
+                    <iframe
+                        src="https://www.youtube.com/embed/e_cBM8PgxTk"
+                        title="Artificially Unintelligent project demo"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">Application layer</div>
+                    <h2>AI is only one part of the product.</h2>
+                    <p>
+                        The prototype wraps the model inside a role-aware healthcare workflow, separating what patients
+                        can do from what clinicians can do and providing a human escalation path for chatbot interactions.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="card feature-card reveal">
+                        <div class="feature-icon">◫</div>
+                        <h3>Shared health records</h3>
+                        <p>Patient history from participating providers is presented through a common record view, reducing the need to navigate isolated hospital portals.</p>
+                    </article>
+
+                    <article class="card feature-card reveal">
+                        <div class="feature-icon">⌁</div>
+                        <h3>Role-based permissions</h3>
+                        <p>Patients can read and download their records, while clinicians additionally receive upload access for adding new reports and screening results.</p>
+                    </article>
+
+                    <article class="card feature-card reveal">
+                        <div class="feature-icon">✦</div>
+                        <h3>Safety-aware chatbot</h3>
+                        <p>The health assistant is positioned as an informational interface rather than a diagnostic tool. Serious queries can be summarised and escalated for doctor review.</p>
+                    </article>
+
+                    <article class="card feature-card reveal">
+                        <div class="feature-icon">∿</div>
+                        <h3>Human-in-the-loop analysis</h3>
+                        <p>The model surfaces evidence for further investigation; the clinician remains responsible for interpreting the result and making the medical decision.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="data">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">Datasets</div>
+                    <h2>Two cohorts with deliberately different perspectives.</h2>
+                    <p>
+                        The project uses a women-only PCOS cohort alongside a mixed-sex thyroid cohort, allowing the
+                        system to explore how specialised and generic data sources can contribute differently.
+                    </p>
+                </div>
+
+                <div class="dataset-grid">
+                    <article class="card dataset-card reveal">
+                        <h3>PCOS Cohort</h3>
+                        <p>Prasoon Kottarathil · Polycystic Ovary Syndrome (PCOS) Dataset</p>
+                        <div class="dataset-meta">
+                            <span class="chip">541 women</span>
+                            <span class="chip">Hormone panels</span>
+                            <span class="chip">Ultrasound</span>
+                            <span class="chip">Clinical symptoms</span>
+                        </div>
+                        <ul>
+                            <li>Clinician-confirmed PCOS labels</li>
+                            <li>Menstrual-cycle history</li>
+                            <li>Follicle and ultrasound measurements</li>
+                        </ul>
+                    </article>
+
+                    <article class="card dataset-card reveal">
+                        <h3>Thyroid Cohort</h3>
+                        <p>UCI Machine Learning Repository · Thyroid Disease / Hypothyroid Dataset</p>
+                        <div class="dataset-meta">
+                            <span class="chip">~3,160 patients</span>
+                            <span class="chip">69% female</span>
+                            <span class="chip">31% male</span>
+                            <span class="chip">Thyroid labs</span>
+                        </div>
+                        <ul>
+                            <li>TSH, T3, T4, T4U and FTI</li>
+                            <li>Age and sex features</li>
+                            <li>Pregnancy and acute-illness indicators</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="disclaimer reveal">
+                    <strong>Prototype context:</strong> this project was created as an AI hackathon prototype and is not a medical diagnostic device. Its design intentionally keeps diagnosis and clinical judgment with healthcare professionals.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div class="section-kicker">Implementation</div>
+                    <h2>Built as an end-to-end ML + web application prototype.</h2>
+                    <p>
+                        The documented implementation centres on a Flask application, reproducible dataset processing,
+                        machine-learning inference, persistent patient records, and an AI-assisted patient interaction layer.
+                    </p>
+                </div>
+
+                <div class="stack reveal">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>pandas</span>
+                    <span>scikit-learn</span>
+                    <span>Machine Learning</span>
+                    <span>Ensemble Modelling</span>
+                    <span>Clinical Rule Engine</span>
+                    <span>PDF / Lab Extraction</span>
+                    <span>Role-Based Access</span>
+                    <span>AI Chatbot</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <div class="card cta-card reveal">
+                    <div class="section-kicker">Explore the build</div>
+                    <h2>Models should expose uncertainty — not hide it.</h2>
+                    <p>
+                        Artificially Unintelligent explores a healthcare AI workflow where specialised models,
+                        clinical logic, missing-data awareness and human review work together instead of relying on
+                        a single opaque prediction.
+                    </p>
+                    <a class="btn btn-primary" href="https://github.com/AbiiBass/HackNation_Aritificially_Unintelligent" target="_blank" rel="noreferrer">Open GitHub repository ↗</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <span>Artificially Unintelligent · HackNation</span>
+            <span>Women's Hormonal Health · Portfolio Showcase</span>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // SLIDESHOW LOGIC
+        // No changes are required here when adding/removing .slide items.
+        // ============================================================
+
+        const slideshow = document.getElementById("projectSlideshow");
+        const slides = Array.from(slideshow.querySelectorAll(".slide"));
+        const dotsContainer = document.getElementById("slideDots");
+        const prevButton = document.getElementById("prevSlide");
+        const nextButton = document.getElementById("nextSlide");
+
+        let currentSlide = 0;
+        let autoplayTimer;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.className = `dot${index === 0 ? " active" : ""}`;
+            dot.setAttribute("aria-label", `Show screenshot ${index + 1}`);
+            dot.addEventListener("click", () => showSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.querySelectorAll(".dot"));
+
+        function showSlide(index) {
+            currentSlide = (index + slides.length) % slides.length;
+
+            slides.forEach((slide, slideIndex) => {
+                slide.classList.toggle("active", slideIndex === currentSlide);
+            });
+
+            dots.forEach((dot, dotIndex) => {
+                dot.classList.toggle("active", dotIndex === currentSlide);
+            });
+
+            restartAutoplay();
+        }
+
+        function restartAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5500);
+        }
+
+        prevButton.addEventListener("click", () => showSlide(currentSlide - 1));
+        nextButton.addEventListener("click", () => showSlide(currentSlide + 1));
+
+        slideshow.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+        slideshow.addEventListener("mouseleave", restartAutoplay);
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") {
+                showSlide(currentSlide - 1);
+            }
+
+            if (event.key === "ArrowRight") {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        restartAutoplay();
+
+        // Subtle scroll reveal animation.
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        document.querySelectorAll(".reveal").forEach((element) => {
+            revealObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
