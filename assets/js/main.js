@@ -169,7 +169,8 @@
     let portfolioContainer = select('.portfolio-container');
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
@@ -217,14 +218,15 @@
   });
 
   /**
-   * Testimonials slider
+   * Testimonials & Featured sliders (Featured autoplays in the opposite direction)
    */
-  new Swiper('.testimonials-slider', {
+  const sliderOptions = (reverseDirection) => ({
     speed: 600, // 600
     loop: true,
     autoplay: {
       delay: 3000, // 600
-      disableOnInteraction: false
+      disableOnInteraction: false,
+      reverseDirection: reverseDirection
     },
     slidesPerView: 'auto',
     pagination: {
@@ -244,6 +246,9 @@
       }
     }
   });
+
+  new Swiper('#testimonials .testimonials-slider', sliderOptions(false));
+  new Swiper('#Featured .testimonials-slider', sliderOptions(true));
 
   /**
    * Animation on scroll
