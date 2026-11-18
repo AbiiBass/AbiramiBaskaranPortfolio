@@ -663,6 +663,16 @@ section {
   transition: all ease-in-out 1s
 }
 
+.portfolio #NASA::before{
+  background-image: url('../img/portfolio/NASA_Description.jpg');
+  transition: all ease-in-out 1s
+}
+
+.portfolio #TechKinesis::before{
+  background-image: url('../img/portfolio/TechKinesis_Description.jpg');
+  transition: all ease-in-out 1s
+}
+
 .portfolio #UpdateSoon::before{
   background-image: url('../img/portfolio/Update_2.JPG');
   transition: all ease-in-out 1s;
